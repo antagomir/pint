@@ -1,0 +1,328 @@
+CHANGES IN VERSION 1.7.03 (2012-03-22)
+
+  o fixed missing documentations
+
+CHANGES IN VERSION 1.7.01 (2012-01-16)
+
+  o added remove.duplicates option to pint.match
+
+CHANGES IN VERSION 1.5.35 (2011-10-13)
+
+  o Fixed bugs with GenomeModels accessors
+
+CHANGES IN VERSION 1.5.34 (2011-08-15)
+
+  o changed the default match.probes to TRUE in screen.cgh.mrna; now
+    also checks with match.probes = FALSE that the probes are matched
+
+CHANGES IN VERSION 1.5.33 (2011-08-02)
+
+  o now artificially adding arm information if it is missing, to avoid
+    halts
+
+CHANGES IN VERSION 1.5.30 (2011-07-15)
+
+  o screen.cgh.mrna option segmented changed into match.probes
+
+CHANGES IN VERSION 1.5.29 (2011-05-09)
+
+BUG FIXES
+
+  o Fixed a bug in plot.ChromosomeModels
+
+CHANGES IN VERSION 1.5.28 (2011-05-09)
+
+BUG FIXES
+
+  o fixed a bug which prevented screeningn while missing values were present
+
+CHANGES IN VERSION 1.5.06 (2011-04-16)
+
+  o added interpretation tools in report.R
+
+CHANGES IN VERSION 1.4.02 (2011-04-16)
+
+  o still correcting critical bug in fixed.window and associated
+    functions: now accepting data with no chromosomal arm information
+
+CHANGES IN VERSION 1.4.01 (2011-04-14)
+
+  o corrected critical bug in fixed.window and associated functions
+
+CHANGES IN VERSION 1.3.85 (2011-04-11)
+
+  o Added a method to get the latent variable Z for particular model
+
+CHANGES IN VERSION 1.3.84 (2011-04-10)
+
+  o vignette updated
+
+CHANGES IN VERSION 1.3.83 (2011-04-10)
+
+BUG FIXES
+
+  o Multiple bugs with GenomeModels methods fixed
+
+CHANGES IN VERSION 1.3.82 (2011-04-10)
+
+BUG FIXES
+
+  o plot.ChromosomeArmModels now prints by default the arm in the 
+    plot title if only models from one arm is plotted
+
+CHANGES IN VERSION 1.3.80 (2011-03-27)
+
+SIGNIFICANT USER-VISIBLE CHANGES
+
+  o Dependency modeling has been splitted to dmt package.
+
+  o ChromosomeArmModels class is removed from the package.
+
+CHANGES IN VERSION 1.3.71 (2011-03-10)
+
+  o The sign of the effects in z.effects and W.effects now corresponds with the data
+
+CHANGES IN VERSION 1.3.70 (2011-03-04)
+
+BUG FIXES
+
+  o fixed bug which caused an error when using findModel to return a model which is 
+    in the end of a chromosome
+
+
+CHANGES IN VERSION 1.3.69 (2011-03-02)
+
+  o added as.data.frame method
+
+BUG FIXES
+
+  o plot method for GenomeModels now works with showTop argument
+
+CHANGES IN VERSION 1.3.68 (2011-03-02)
+
+  o corrected bibtex bug in doc
+
+CHANGES IN VERSION 1.3.67 (2011-02-01)
+
+  o if row or column names for the data are missing, they are named by
+    indices and warning is given (pint.data function)
+
+CHANGES IN VERSION 1.3.66 (2011-01-29)
+
+BUG FIXES
+
+  o pint.data: dimnames now provided for the output data and info fields
+
+CHANGES IN VERSION 1.3.63 (2011-01-13)
+
+BUG FIXES
+
+  o as.data.frame fixed
+
+CHANGES IN VERSION 1.3.63 (2010-01-11)
+
+  o Added many new development features that help to handle segmented
+    data (options segmented and nonmatched, and related scripts). Will
+    be documented properly in later versions.
+
+CHANGES IN VERSION 1.3.35 (2010-12-30)
+
+BUG FIXES 
+
+  o in pint.match added rownames check between Y$info and
+    Y$data, previously only number of rows was checked for Y data. For
+    X data things were ok: both row number and row names were checked
+
+  o in pint.data call within pint.match, the X data set was
+    erroneously used for both X and Y calls. Now calling Y for Y and X
+    for X. Also polishing replace.inf part. Now also naming the info field
+    rows correctly.
+    
+NEW FEATURES
+   
+  o checking info fields in pint.data for synonymous terms: replacing
+    "chromosome" with "chr" and "stop" with "end". Requires less
+    tweaking from the end user.
+
+  o if chromosome names X or Y used, replace these with 23 and
+    24. This makes code compatible with any organism.
+
+MISC
+ 
+  o changed the internal function name 'impute' to 'imputation'
+
+  o moved some functionality from pint.match to pint.data
+
+CHANGES IN VERSION 1.3.33 (2010-12-09)
+
+BUG FIXES
+
+ o corrected bug in impute.R function which produced NAs
+
+ o added replace.inf in pint.data; now this preprocessing function
+   (and consequently pint.match) replaces infinite values with large
+   values by default
+
+CHANGES IN VERSION 1.3.32 (2010-12-09)
+
+NEW FEATURES
+
+ o imputation option added (default TRUE) to pint.match and improved
+   in pint.data
+ 
+
+CHANGES IN VERSION 1.3.3 (2010-10-21)
+
+NEW FEATURES
+
+  o GenomeModels and ChromosomeModels classes have getModelNumbers
+  method
+  o topGenes and topModels methods have default values
+  o screen.cgh.mrna checks whether data has been segmented and 
+  warns the user
+
+CHANGES IN VERSION 1.3.2 (2010-10-20)
+
+NEW FEATURES
+
+  o Default value for windowSize argument in screening function 
+    changed
+
+CHANGES IN VERSION 1.3.1 (2010-10-19)
+
+NEW FEATURES
+
+  o Segmented gene copy number data can be screened with pSimCCA
+    method, although it is not recommended.
+  o Output type of screening functions can changed to a data frame.
+  o All dependency model outputs from screening functions can now
+    converted to a data frame with as.data.frame method.
+  o ChromosomeArmModels can be accessed with [['p']] and [['q']]
+    from ChromosomeModels.
+
+BUG FIXES
+
+  o z.effects gives a proper error message when the window size is
+    too large.
+  o pCCA method gives a proper error message when the data matrix is not
+    invertible.
+
+CHANGES IN VERSION 1.1.17 (2010-10-15)
+
+HELP & Rd FILE CHANGES
+
+  o sample and genes are displayed in correct order in help pages
+    for screening functions
+
+CHANGES IN VERSION 1.1.16 (2010-08-04)
+
+BUG FIXES
+
+  o screening functions can handle chromosomes with fewer samples
+  than window size
+  o isEmpty method is now exported
+  o topModels method for ChromosomeModels class gives no longer
+  an error when either arm has no dependency models
+
+CHANGES IN VERSION 1.1.15 (2010-06-16)
+
+SIGNIFICANT USER-VISIBLE CHANGES
+
+  o updates to pint.match function. Now confirms that 'data' and
+  'info' fields in the input data matrices are converted to have
+  matching elements (corresponding to geneids, for example). Also an
+  option to include only selected chromosomes was added. Works now
+  with both X/Y or 23/24 annotation for the chromosomes; characters
+  and numerics are both ok. Changes affect also the screen.mrna.cgh
+  function which calls pint.match (and other functions that call it)
+
+CHANGES IN VERSION 1.1.1 (2010-06-04)
+
+NEW FEATURES
+
+  o matches the samples between cgh and mrna data (screen.cgh.mrna
+    function) automatically based on sample names
+  o matches genes between cgh and mrna data (screen.cgh.mrna function)
+    based on chromosomal locations. User-defined distance threshold
+    can be given.
+
+BUG FIXES
+
+  o added robustness towards missing values
+
+
+CHANGES IN VERSION 0.99.5 (2010-03-28)
+
+SIGNIFICANT USER-VISIBLE CHANGES
+
+  o screen.chromosome function name changed to screen.cgh.mrna
+  o methods findHighestGenes and findHighestModels changed to topGenes and topModels 
+  o z.projection and W.projection changed to z.effects and W.effects
+  o method name 'TPriorpSimCCA' removed and added to 'psimCCA'
+
+NEW FEATURES
+
+  o screening between mirna and cgh added
+  o ability to show gene names with highest dependency scores added to plots
+  o model can be searched by gene name from output from screen functions
+  o model can be calculated around gene by its name
+  o order.results methods added which return genes and their dependency scores
+  o size of variable name texts can be changed in plot.DependencyModel
+  o aliases added to methods (pfa, pcca, pcca.isotropic and ppca)
+  o function to format data for packages dependency model calculation added (pint.data)
+  o function to pair data sets added (pint.match)
+
+HELP & Rd FILE CHANGES
+  o clarified the documentation
+
+DOCUMENTATION
+  o model description added to Vignette
+
+CHANGES IN VERSION 0.99.3 (2010-02-23)
+
+SIGNIFICANT USER-VISIBLE CHANGES
+
+  o calculate function name changed to screen.chromosome
+
+NEW FEATURES
+
+  o probabilistic factorial analysis model added
+  o argument M in fit.dependency.model changed to H and arbitary matrix
+  can be given instead of just identity matrix for pSimCCA method with T prior
+  o plot.DependencyModel function added
+  o z.projection and W.projection functions added.
+
+HELP & Rd FILE CHANGES
+
+  o changes to examples in help pages
+
+DOCUMENTATION
+
+  o Vignette updatet
+  o Collate field added to DESCRIPTION
+
+BUG FIXES
+
+  o all methods of fit.dependency.model are fixed to give full W and phi 
+  matrices with correct dimension names
+
+CHANGES IN VERSION 0.99.4 (2010-03-08)
+
+SIGNIFICANT USER-VISIBLE CHANGES
+
+  o default method of screen.chromosome() changed to pSimCCA
+
+NEW FEATURES
+
+  o psimCCA method now accepts data matrices of a different size
+  o used method in screen.chromosome() can be determined by parameters only
+  o annotation types can be given to plot.DependencyModel() function
+  o samples can be ordered in plot.DependencyModel() function according to their
+  contribution to dependency model
+  o dimension of latent variable z can be given with psimCCA method
+
+BUG FIXES
+
+  o bug fixed that prevented screening the whole genome 
+  o show methods now print the used method when only parameters given to screen.chromosome()
+  o incorrect gene name in DependencyModel objects corrected
