@@ -1,0 +1,41 @@
+citHeader("To cite pint in publications use:")
+
+citEntry(entry="misc",
+         title = "Dependency detection with similarity constraints",
+         author = personList(
+	 	person(given ="Leo", family="Lahti", email = "leo.lahti@iki.fi"),
+	 	person(given ="Samuel", family="Myllykangas"),
+	 	person(given ="Sakari", family="Knuutila"),
+	 	person(given ="Samuel", family="Kaski")),
+	 note = "In Proc. IEEE International Workshop on Machine Learning for Signal Processing XIX / MLSP09",
+	 year = "2009",
+	 publisher = "IEEE",
+	 address = "Piscataway, NJ, USA", 
+         pages = "89-94",
+         textVersion =
+         paste("Leo Lahti, Samuel Myllykangas, Sakari Knuutila and
+Samuel Kaski.",
+               "Dependency detection with similarity constraints",
+               "In T{\"u}lay Adali, Jocelyn Chanussot, Christian Jutten, and Jan Larsen, editors.",      
+	       "Proc. IEEE International Workshop on Machine Learning for Signal Processing XIX / MLSP09.", 
+	       "Piscataway, NJ, USA, pp. 89-94, 2009.",
+               sep=" ")
+         )
+	 
+citEntry(entry="misc",
+         title = "pint - Pairwise INTegration of functional genomics data",
+         author = personList(
+	 	person(given ="Olli-Pekka", family="Huovilainen", email = "ohuovila@gmail.com"),
+	 	person(given ="Leo", family="Lahti")),
+	 note = "http://www.bioconductor.org/packages/release/bioc/html/pint.html",
+	 year = "2010",
+	 publisher = "Bioconductor",
+         textVersion =
+         paste("Olli-Pekka Huovilainen and Leo Lahti.",
+               "pint - R/Bioconductor package for pairwise integration of functional genomics data.",
+	       "URL: http://www.bioconductor.org/packages/release/bioc/html/pint.html",
+               sep=" ")
+         )	 
+
+citFooter("pint has been created by Olli-Pekka Huovilainen and Leo Lahti. Please cite the pint BioConductor package and the MLSP09 publication.")
+
