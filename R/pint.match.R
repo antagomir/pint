@@ -48,6 +48,32 @@ pint.match <- function(X, Y, max.dist = 1e7, chrs = NULL, useSegmentedData = FAL
 
 closest <- function(a, vec){which.min(abs(a - vec))}
 
+
+
+#' Get neighboring probes
+#' 
+#' Mainly for internal use. Pick neighboring probes for a given probes based on
+#' chromosomal locations.
+#' 
+#' 
+#' @param X Data object. See help(screen.cgh.mrna). For instance, geneExp from
+#' our example data set.
+#' @param Y Data object. See help(screen.cgh.mrna). For instance, geneCopyNum
+#' from our example data set.
+#' @param chr chromosome to investigate
+#' @param max.dist consider probes within this distance
+#' @param control.arms take chromosomal arm information into account
+#' @param remove.duplicates for each probe, list exactly one (the closest)
+#' match. This is useful in one-to-many matching situations where duplicates
+#' may not be desired.
+#' @return A list with matched indices for the X and Y data sets.
+#' @author Leo Lahti \email{leo.lahti@@iki.fi}
+#' @references See citation("pint")
+#' @keywords utilities
+#' @examples
+#' 
+#' # Intended for internal use.
+#' 
 get.neighboring.probes <- function (X, Y, chr, max.dist, control.arms = TRUE, remove.duplicates = TRUE) {
 
   xinds <- yinds <- c()
@@ -77,6 +103,30 @@ get.neighboring.probes <- function (X, Y, chr, max.dist, control.arms = TRUE, re
 }
 
 
+
+
+#' get.neighs
+#' 
+#' Matching function called by the get.neighboring.probes
+#' 
+#' 
+#' @param X Data object. See help(screen.cgh.mrna). For instance, geneExp from
+#' our example data set.
+#' @param Y Data object. See help(screen.cgh.mrna). For instance, geneCopyNum
+#' from our example data set.
+#' @param xchrinds chromosomal indices for the probes in X data set
+#' @param ychrinds chromosomal indices for the probes in Y data set
+#' @param max.dist consider probes within this chromosomal distance
+#' @param remove.duplicates remove duplicate probes in many-to-one matching
+#' cases, use the closest match
+#' @return List of matched X and Y indices.
+#' @author Leo Lahti \email{leo.lahti@@iki.fi}
+#' @references See citation("pint")
+#' @keywords utilities
+#' @examples
+#' 
+#' # Intended for internal use.
+#' 
 get.neighs <- function (X, Y, xchrinds, ychrinds, max.dist, remove.duplicates = TRUE) {
 
   xinds <- yinds <- NULL

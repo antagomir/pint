@@ -4,8 +4,7 @@ pint
 Probabilistic dependency analysis for functional genomics.
 In particular, tools for integrative screening
 of genome-wide RNA and DNA profiling data for cancer gene discovery 
-and functional analysis of chromosomal aberrations ([Lahti et al. MLSP
-2009](http://www.roihu.info/publications/preprints/mlsp09_preprint.pdf)).
+and functional analysis of chromosomal aberrations (Lahti et al. MLSP 2009).
 
 The package implements probabilistic models for integrative analysis
 of mRNA expression levels with DNA copy number (aCGH) measurements to
@@ -24,8 +23,8 @@ prognostic and clinical impact.
 
 The methods are based on latent variable models including
 probabilistic canonical correlation analysis and related extensions,
-implemented in the [dmt
-package](http://cran.fhcrc.org/web/packages/dmt/index.html).
+implemented in the
+[dmt package](http://cran.fhcrc.org/web/packages/dmt/index.html).
 Probabilistic formulation deals rigorously with uncertainty associated
 with small sample sizes common in biomedical studies and provides
 tools to guide dependency modeling through Bayesian priors.

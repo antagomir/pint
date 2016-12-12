@@ -1,5 +1,30 @@
-
-
+#' Merge the overlapping top chromosomal regions.
+#' 
+#' Select the top models that exceed the threshold and merge the overlapping
+#' windows. Useful for interpreting the results.
+#' 
+#' 
+#' @param model Object of \linkS4class{ChromosomeModels} or
+#' \linkS4class{GenomeModels} class.
+#' @param feature.info A data frame containing annotations for genes. For
+#' instance the geneExp$info table from our example data set (see
+#' data(chromosome17)).
+#' @param quantile.th Threshold to define what quantile of the genes to include
+#' in the top region list, based on dependency scores for each gene.
+#' @param augment If TRUE, list also genes that were not used for modeling but
+#' available in the annotations (feature.info) and residing within the same
+#' region.
+#' @return A list; each element is a vector of gene names that correspond to
+#' one continuous region.
+#' @author Leo Lahti \email{leo.lahti@@iki.fi}
+#' @seealso summarize.region.parameters
+#' @references See citation("pint")
+#' @keywords utilities
+#' @examples
+#' 
+#' ## NOT RUN
+#' # top.regions <- join.top.regions(model, geneExp$info, quantile.th = 0.95)
+#' 
 join.top.regions <- function (model, feature.info, quantile.th = 0.95, augment = FALSE) {
 
   # Pick all top regions (based on the given threshold) and join overlapping windows
@@ -58,6 +83,44 @@ join.top.regions <- function (model, feature.info, quantile.th = 0.95, augment =
 }
 
 
+
+
+#' Summarize overlapping models.
+#' 
+#' Given a chromosomal region, summarize the model parameters from overlapping
+#' models. This heuristics gives a brief summary on average sample and probe
+#' effects within the region and aids interpretation. If multiple alteration
+#' profiles are detected within the region, the models are grouped and
+#' summarization is applied separately for each group containing overlapping
+#' models with high similarity.
+#' 
+#' Grouping of the models is based on heuristics where highly correlating
+#' models (>grouping.th) are merged. Will be improved later.
+#' 
+#' @param region.genes A vector of gene names determining the investigated
+#' region.
+#' @param model Object of \linkS4class{ChromosomeModels} or
+#' \linkS4class{GenomeModels} class.
+#' @param X Data object. See help(screen.cgh.mrna). For instance, geneExp from
+#' our example data set.
+#' @param Y Data object. See help(screen.cgh.mrna). For instance, geneCopyNum
+#' from our example data set.
+#' @param grouping.th Similarity threshold for joining neighboring models.
+#' @param rm.na Remove genes with NA values from the output.
+#' @return \item{z}{Mean sample effects, averaged over the overlapping models
+#' for each sample.} \item{W}{Mean probe effects, averaged over the overlapping
+#' models for each probe. This is a list with elements X, Y, corresponding to
+#' the two data sets.}
+#' @author Leo Lahti \email{leo.lahti@@iki.fi}
+#' @seealso merge.top.regions
+#' @references See citation("pint")
+#' @keywords utilities
+#' @examples
+#' 
+#' #  tmp <- summarize.region.parameters(top.region.genes, model, geneExp, geneCopyNum)
+#' #  wx <- tmp$W$X
+#' #  z <- tmp$z
+#' 
 summarize.region.parameters <- function (region.genes, model, X, Y, grouping.th = 0.9, rm.na = TRUE) {
 
   # Take average of the Zs and Ws over the overlapping models
@@ -142,6 +205,25 @@ summarize.region.parameters <- function (region.genes, model, X, Y, grouping.th 
   
 
 
+
+
+#' Order the gene information table by chromosomal locations.
+#' 
+#' Order the gene information table by chromosomal locations. Removes genes
+#' with no location information.
+#' 
+#' 
+#' @param feature.info A data frame containing at least the following fields:
+#' geneName, chr, and loc.
+#' @return An ordered data frame.
+#' @author Leo Lahti \email{leo.lahti@@iki.fi}
+#' @references See citation("pint")
+#' @keywords utilities
+#' @examples
+#' 
+#' ## NOT RUN
+#' #feature.info.ordered <- order.feature.info(feature.info)
+#' 
 order.feature.info <- function (feature.info) {
 
   feature.info$chr <- as.character(feature.info$chr)
