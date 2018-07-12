@@ -1,0 +1,262 @@
+%\VignetteIndexEntry{pint}
+%The above line is needed to remove a warning in R CMD check
+\documentclass[a4paper]{article}
+
+\title{pint:\\probabilistic data integration for functional genomics}
+
+\author{Olli-Pekka Huovilainen$^1$\footnote{ohuovila@gmail.com}\  and
+Leo Lahti$^{1,2}$\\(1) Dpt. Information and Computer Science, Aalto
+University, Finland\\(2) Dpt. Veterinary Bioscience, University of Helsinki, Finland}
+
+\usepackage{Sweave}
+\usepackage{float}
+
+\usepackage{amsmath,amssymb,amsfonts}
+%\usepackage[authoryear,round]{natbib}
+
+\usepackage{hyperref}
+\newcommand{\Rfunction}[1]{{\texttt{#1}}}
+\newcommand{\Robject}[1]{{\texttt{#1}}}
+\newcommand{\Rpackage}[1]{{\textit{#1}}}
+
+\def\z{\mathbf{z}}
+\def\x{\mathbf{x}}
+\def\y{\mathbf{y}}
+\def\N{\mathcal{N}}
+
+\begin{document}
+
+\maketitle
+
+\section{Introduction}
+
+Multiple genomic observations from the same samples are increasingly
+available in biomedical studies, including measurements of gene- and
+micro-RNA expression levels, DNA copy number, and methylation status.
+By investigating dependencies between different functional layers of
+the genome it is possible to discover mechanisms and interactions that
+are not seen in the individual measurement sources. For instance,
+integration of gene expression and DNA copy number can reveal
+cancer-associated chromosomal regions and associated genes with
+potential diagnostic, prognostic and clinical impact
+\cite{Lahti09mlsp}.
+
+This package implements probabilistic models for integrative analysis
+of mRNA expression levels with DNA copy number (aCGH) measurements to
+discover functionally active chromosomal alterations. The algorithms
+can be used to discover functionally altered chromosomal regions and
+to visualize the affected genes and samples. The algorithms can be
+applied also to other types of biomedical data, including epigenetic
+modifications, SNPs, alternative splicing and transcription factor
+binding, or in other application fields.
+
+The methods are based on latent variable models including
+probabilistic canonical correlation analysis \cite{Bach05} and related
+extensions \cite{Archambeau06,Klami08,Lahti09mlsp}, implemented in the
+\Rpackage{dmt} package in CRAN \cite{Lahti10dmt, Huovilainen10}.
+Probabilistic formulation deals rigorously with uncertainty associated
+with small sample sizes common in biomedical studies and provides
+tools to guide dependency modeling through Bayesian priors
+\cite{Lahti09mlsp}.
+
+\subsubsection{Dependencies}
+
+The CRAN packages \Rpackage{dmt} and \Rpackage{mvtnorm} are required
+for installation. 
+
+\section{Examples}
+
+This Section shows how to apply the methods for dependency detection
+in functional genomics. For further details on the dependency modeling
+framework, see the dependency modeling package {\it dmt} in
+CRAN\footnote{http://dmt.r-forge.r-project.org/}.
+
+
+\subsection{Example data}
+
+Our example data set contains matched observations of gene expression
+and copy number from a set of gastric cancer patients
+\cite{Myllykangas08jc}. Load the package and example data with:
+
+<<results=hide>>=
+library(pint)
+data(chromosome17)
+@
+
+The example data contains ($geneExp$ and $geneCopyNum$) objects. These
+lists contain two elements: 
+
+\begin{itemize} \item $data$ matrix with gene expression or gene copy
+  number data. Genes are in rows and samples in columns and rows and
+  columns should be named and the probes and samples are matched
+  between the two data sets.
+
+\item $info$ data frame with additional information about the genes in
+the $data$ object; in particular, $loc$ indicates the genomic location
+of each probe in base pairs; $chr$ and $arm$ indicate the chromosome
+and chromosomal arm of the probe. \end{itemize}
+  
+The models assume {\it approximately} Gaussian distributed
+observations. With microarray data sets, this is typically obtained by
+presenting the data in the \(log_2\) domain, which is the default in
+many microarray preprocessing methods.
+
+
+\subsection{Discovering functionally active copy number changes}
+
+Chromosomal regions that have simultaneous copy number alterations and
+gene expression changes will reveal potential cancer gene
+candidates. To detect these regions, we measure the dependency between
+expression and copy number for each region and pick the regions
+showing the highest dependency as such regions have high dependency
+between the two data sources. A sliding window over the genome is used
+to quantify dependency within each region. Here we show a brief example on
+chromosome arm 17q:
+
+<<>>=
+models <- screen.cgh.mrna(geneExp, geneCopyNum, windowSize = 10, chr = 17, arm = 'q')
+@
+
+The dependency is measured separately for each gene within a
+chromosomal region ('window') around the gene. A fixed dimensionality
+(window size) is necessary to ensure comparability of the dependency
+scores between windows. The scale of the chromosomal regions can be
+tuned by changing the window size ('windowSize'). The default
+dependency modeling method is a constrained version of probabilistic
+CCA; \cite{Lahti09mlsp}. See help(screen.cgh.mrna) for further
+options.
+
+
+\subsection{Application in other genomic data integration tasks}
+
+Other genomic data sources such as micro-RNA or epigenetic
+measurements are increasingly available in biomedical studies,
+accompanying observations of DNA copy number changes and mRNA
+expression levels \cite{tcga08}. Given matched probes and samples, the
+current functions can be used to screen for dependency between any
+pair of genomic (or other) data sources.
+
+
+
+\section{Summarization and interpretation}
+
+\subsection{Visualization}
+
+Dependency plots will reveals chromosomal regions with the strongest
+dependency between gene expression and copy number changes:
+
+\begin{figure}[H]
+\begin{center}
+<<fig = true>>=
+plot(models, showTop = 10)
+@
+\end{center}
+\caption{The dependency plot reveals chromosomal regions with the strongest
+  dependency between gene expression and copy number.}
+\label{fig:pSimCCA}
+\end{figure}
+
+Here the highest dependency is between 30-40Mbp which is a known
+gastric cancer-associated region. Note that the display shows the
+location in megabasepairs while location is provided in basepairs. The
+top-5 genes with the highest dependency in their chromosomal
+neighborghood can be retrieved with:
+
+<<>>=
+topGenes(models, 5)
+@
+
+It is also possible investigate the contribution of individual
+patients or probes on the overall dependency based on the model
+parameters \(W\) and the latent variable \(\z\) that are easily
+retrieved from the learned dependency model
+(Fig. ~\ref{fig:modelplot}). In 1-dimensional case the interpretation
+is straightforward: \(\z\) will indicate the shared signal strength in
+each sample and \(W\) describes how the shared signal is reflected in
+each data source. With multi-dimensional \(W\) and \(\z\), the
+variable- and sample effects are approximated (for visualization
+purposes) by the loadings and projection scores corresponding of the
+first principal component of \(W\z\) is used to summarize the shared
+signal in each data set. 
+
+
+\begin{figure}[H]
+\begin{center}
+<<fig=true>>=
+model <- topModels(models)
+plot(model, geneExp, geneCopyNum)
+@
+\end{center}
+\caption{Samples and variable contribution to the dependencies around
+  the gene with the highest dependency score between gene expression
+  and copy number measurements in the chromosomal region. The
+  visualization highlights the affected patients and genes.}
+\label{fig:modelplot}
+\end{figure}
+
+\subsection{Summarization}
+
+Other useful functions for summarizing and investigating the results include:
+\begin{itemize}
+\item {\it join.top.regions}: merge overlapping models that exceed the
+  threshold; gives a list of distinct, continuous regions detected by the models.
+\item {\it summarize.region.parameters}: provides a summary of sample
+  and probe effects over partially overlapping models
+\end{itemize}
+
+
+\section{The dependency modeling framework}
+
+Detailed description of the model parameters and available dependency
+detection methods is provided with the {\it dmt} package in CRAN
+\cite{Lahti10dmt}. The models are based on probabilistic canonical
+correlation analysis and related extensions \cite{Bach05,
+Lahti09mlsp}. In summary, the shared signal between two (multivariate)
+observations \(X, Y\) is modeled with a shared latent variable $\z$.
+This can have different manifestation in each data set, which is
+described by linear transformations \(W_x\) and \(W_y\). Standard
+multivariate normal distribution for the shared latent variable and
+data set-specific effects gives the following model:
+
+\begin{equation}\label{eq:model}             
+\begin{aligned}
+  X \sim W_x\z + \varepsilon_x\\
+  Y \sim W_y\z + \varepsilon_y
+\end{aligned}
+\end{equation}
+
+The data set-specific effects are modeled with multivariate Gaussians
+\(\varepsilon_. \sim \mathcal{N}(0, \Psi_.)\) with covariances
+$\Psi_x$, $\Psi_y$, respectively.  Dependency between the data sets
+\(X\), \(Y\) is quantified by the ratio of shared vs. data
+set-specific signal (see '?dependency.score'), calculated as
+
+\begin{equation}\label{depscore}
+  \frac{Tr(WW^T)}{Tr(\Psi)}
+\end{equation}
+\section{Details}
+                    
+\begin{itemize}                                     
+\item {\it Licensing terms:} the package is licensed under FreeBSD open software license
+\item {\it Citing pint:} Please cite \cite{Lahti09mlsp}               
+\end{itemize}                                 
+                    
+
+This document was written using:        
+                                        
+<<details>>=       
+sessionInfo()             
+@
+
+
+\subsection*{Acknowledgements}
+
+We would like to thank prof. Sakari Knuutila (University of Helsinki)
+for providing the example data set.
+
+\bibliographystyle{abbrv}
+\bibliography{depsearch}
+
+
+
+\end{document}

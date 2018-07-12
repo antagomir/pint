@@ -1,0 +1,18 @@
+Package: pint
+Type: Package
+Title: Pairwise INTegration of functional genomics data
+Version: 1.25.11
+Author: Olli-Pekka Huovilainen and Leo Lahti
+Maintainer: Leo Lahti <leo.lahti@iki.fi>
+Description: Pairwise data integration for functional genomics, including tools
+    for DNA/RNA/miRNA dependency screens.
+License: BSD_2_clause + file LICENSE
+URL: https://cran.r-project.org/package=pint
+BugReports: https://github.com/antagomir/pint/issues
+LazyLoad: yes
+Suggests: mvtnorm, methods, graphics, Matrix, dmt
+biocViews: aCGH, GeneExpression, Genetics, DifferentialExpression,
+        Microarray
+RoxygenNote: 5.0.1
+NeedsCompilation: no
+Packaged: 2016-12-12 18:26:54 UTC; lei
