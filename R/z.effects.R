@@ -47,23 +47,25 @@
 #' @keywords math
 #' @examples
 #' 
-#' data(chromosome17)
-#' window <- fixed.window(geneExp, geneCopyNum, 150, 10)
+#' #data(chromosome17)
+#' #window <- fixed.window(geneExp, geneCopyNum, 150, 10)
 #' 
-#' ## pSimCCA model around one gene
-#' depmodel <- fit.dependency.model(window$X, window$Y)
-#' # Conversion from DependencyModel to GeneDependencyModel so that gene name and location can be stored
-#' depmodel <- as(depmodel,"GeneDependencyModel")
-#' setGeneName(depmodel) <- window$geneName
-#' setLoc(depmodel) <- window$loc
-#' barplot(z.effects(depmodel, geneExp, geneCopyNum))
+#' ### pSimCCA model around one gene
+#' #depmodel <- fit.dependency.model(window$X, window$Y)
+#' ## Conversion from DependencyModel to GeneDependencyModel so that
+#' ## gene name and location can be stored
+#' ##depmodel <- as(depmodel,"GeneDependencyModel")
+#' #setGeneName(depmodel) <- window$geneName
+#' #setLoc(depmodel) <- window$loc
+#' #barplot(z.effects(depmodel, geneExp, geneCopyNum))
 #' 
-#' ## Plot the contribution of each genes to the model. Only the X component is plotted
+#' ## Plot the contribution of each genes to the model.
+#' ## Only the X component is plotted
 #' ## here since Wx = Wy (in SimCCA) 
-#' barplot(W.effects(depmodel, geneExp, geneCopyNum)$X)
+#' #barplot(W.effects(depmodel, geneExp, geneCopyNum)$X)
 #' 
 #' ## plot.DpenendencyModel shows also sample and variable effects
-#' plot(depmodel,geneExp,geneCopyNum)
+#' #plot(depmodel,geneExp,geneCopyNum)
 #' 
 z.effects <- function(model, X, Y = NULL){
 

@@ -1,6 +1,5 @@
 plot.GeneDependencyModel <- function(x, X, Y = NULL, ann.types = NULL, ann.cols = NULL, legend.x = 0, legend.y = 1, legend.xjust = 0, legend.yjust = 1, order=FALSE, cex.z = 0.6, cex.WX = 0.6, cex.WY = 0.6,...){
                                  
-#X <- geneExp; Y <- geneCopyNum; ann.types = NULL; ann.cols = NULL; legend.x = 0; legend.y = 1; legend.xjust = 0; legend.yjust = 1; order=FALSE; cex.z = 0.6; cex.WX = 0.6; cex.WY = 0.6
 
   model <- x
   

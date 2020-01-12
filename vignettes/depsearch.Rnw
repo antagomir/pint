@@ -113,7 +113,7 @@ between the two data sources. A sliding window over the genome is used
 to quantify dependency within each region. Here we show a brief example on
 chromosome arm 17q:
 
-<<>>=
+<<eval=FALSE>>=
 models <- screen.cgh.mrna(geneExp, geneCopyNum, windowSize = 10, chr = 17, arm = 'q')
 @
 
@@ -147,7 +147,7 @@ dependency between gene expression and copy number changes:
 
 \begin{figure}[H]
 \begin{center}
-<<fig = true>>=
+<<fig = true, eval=FALSE>>=
 plot(models, showTop = 10)
 @
 \end{center}
@@ -162,7 +162,7 @@ location in megabasepairs while location is provided in basepairs. The
 top-5 genes with the highest dependency in their chromosomal
 neighborghood can be retrieved with:
 
-<<>>=
+<<eval=FALSE>>=
 topGenes(models, 5)
 @
 
@@ -182,7 +182,7 @@ signal in each data set.
 
 \begin{figure}[H]
 \begin{center}
-<<fig=true>>=
+<<fig=true, eval=FALSE>>=
 model <- topModels(models)
 plot(model, geneExp, geneCopyNum)
 @

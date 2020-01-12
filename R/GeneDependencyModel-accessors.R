@@ -66,9 +66,9 @@ setMethod("getWindowSize","GeneDependencyModel",
 setMethod("getZ","GeneDependencyModel",
   function(model, X, Y) {
     if (missing(X) || missing(Y)) stop("Original data sets are needed as parameters")
+    #window <- fixed.window(X,Y,which(rownames(X$data) == getGeneName(model)),getWindowSize(model))   
     Xm <- t(centerData(t(X$data[rownames(model@W$X), ]), rm.na = TRUE))
     Ym <- t(centerData(t(Y$data[rownames(model@W$Y), ]), rm.na = TRUE))
     return(z.expectation(model, Xm, Ym)) 
   }
 )
-

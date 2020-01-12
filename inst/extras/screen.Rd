@@ -11,8 +11,9 @@ depending on arguments with chosen window size between two data sets.
 }
 \usage{
 screen.cgh.mrna(X, Y, windowSize = NULL, chromosome, arm, method =
-"pSimCCA", params = list(), max.dist = 1e7, outputType = "models",
-useSegmentedData = TRUE, match.probes = TRUE, regularized = FALSE)
+"pSimCCA", params =
+list(), max.dist = 1e7, outputType = "models", useSegmentedData =
+TRUE, match.probes = TRUE, regularized = FALSE)
 
 screen.cgh.mir(X, Y, windowSize, chromosome, arm, method = "", params = list(),
 outputType = "models")

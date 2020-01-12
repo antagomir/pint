@@ -1,3 +1,7 @@
+#' @title Iterative Window
+#' @description iterative window.
+#' @return List
+#' @export
 iterative.window <- function (X, Y, middleIndex, windowSize) {
 		
 	# Flag to show if window is in the edge of chromosomal arm

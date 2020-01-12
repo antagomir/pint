@@ -1,42 +1,180 @@
-* using log directory ‘/home/lei/Rpackages/pint/inst/extras/pint.Rcheck’
-* using R version 3.3.1 (2016-06-21)
+* using log directory ‘/home/lemila/Rpackages/pint/inst/extras/pint.Rcheck’
+* using R version 3.6.2 (2019-12-12)
 * using platform: x86_64-pc-linux-gnu (64-bit)
 * using session charset: UTF-8
 * using options ‘--no-build-vignettes --as-cran’
 * checking for file ‘pint/DESCRIPTION’ ... OK
 * checking extension type ... Package
-* this is package ‘pint’ version ‘1.25.11’
+* this is package ‘pint’ version ‘1.37.2’
 * checking CRAN incoming feasibility ... NOTE
-Maintainer: ‘Leo Lahti <leo.lahti@iki.fi>’
+Maintainer: ‘Olli-Pekka Huovilainen <ohuovila@gmail.com>’
 
-Package duplicated from https://bioconductor.org/packages/3.3/bioc
-
-License components with restrictions and base license permitting such:
-  BSD_2_clause + file LICENSE
-File 'LICENSE':
-  YEAR: 2008-2013
-  COPYRIGHT HOLDER: Leo Lahti and Olli-Pekka Huovilainen
+Package duplicated from https://bioconductor.org/packages/3.10/bioc
 
 Found the following (possibly) invalid URLs:
-  URL: http://cran.fhcrc.org/web/packages/dmt/index.html
+  URL: http://www.roihu.info/publications/preprints/mlsp09_preprint.pdf
     From: README.md
-    Status: 200
-    Message: OK
-    CRAN URL not in canonical form
-  URL: https://cran.r-project.org/package=pint
-    From: DESCRIPTION
     Status: 404
     Message: Not Found
-  A canonical CRAN URL starts with https://cran.r-project.org/
 
-The Title field should be in title case, current version then in title case:
+The Title field should be in title case. Current version is:
 ‘Pairwise INTegration of functional genomics data’
+In title case that is:
 ‘Pairwise INTegration of Functional Genomics Data’
-* checking package namespace information ... OK
-* checking package dependencies ... ERROR
-Namespace dependency not required: ‘dmt’
 
-See section ‘The DESCRIPTION file’ in the ‘Writing R Extensions’
-manual.
+Size of tarball: 5090228 bytes
+* checking package namespace information ... OK
+* checking package dependencies ... OK
+* checking if this is a source package ... OK
+* checking if there is a namespace ... OK
+* checking for executable files ... OK
+* checking for hidden files and directories ... OK
+* checking for portable file names ... OK
+* checking for sufficient/correct file permissions ... OK
+* checking serialization versions ... OK
+* checking whether package ‘pint’ can be installed ... WARNING
+Found the following significant warnings:
+  Warning: Package 'pint' is deprecated and will be removed from Bioconductor
+  Warning: replacing previous import ‘Matrix::image’ by ‘graphics::image’ when loading ‘pint’
+See ‘/home/lemila/Rpackages/pint/inst/extras/pint.Rcheck/00install.out’ for details.
+* checking installed package size ... NOTE
+  installed size is  5.4Mb
+  sub-directories of 1Mb or more:
+    extras   4.6Mb
+* checking package directory ... OK
+* checking for future file timestamps ... OK
+* checking DESCRIPTION meta-information ... OK
+* checking top-level files ... OK
+* checking for left-over files ... OK
+* checking index information ... OK
+* checking package subdirectories ... OK
+* checking R files for non-ASCII characters ... OK
+* checking R files for syntax errors ... OK
+* checking whether the package can be loaded ... OK
+* checking whether the package can be loaded with stated dependencies ... OK
+* checking whether the package can be unloaded cleanly ... OK
+* checking whether the namespace can be loaded with stated dependencies ... OK
+* checking whether the namespace can be unloaded cleanly ... OK
+* checking loading without being on the library search path ... OK
+* checking use of S3 registration ... OK
+* checking dependencies in R code ... OK
+* checking S3 generic/method consistency ... OK
+* checking replacement functions ... OK
+* checking foreign function calls ... OK
+* checking R code for possible problems ... NOTE
+calculate.arm: no visible global function definition for
+  ‘fit.dependency.model’
+calculate.arm.sparse: no visible global function definition for
+  ‘fit.dependency.model’
+fit.cgh.mir.byname: no visible global function definition for
+  ‘fit.dependency.model’
+fit.cgh.mrna.byname: no visible global function definition for
+  ‘fit.dependency.model’
+imputation: no visible global function definition for ‘rnorm’
+imputation: no visible global function definition for ‘sd’
+join.top.regions: no visible global function definition for ‘quantile’
+plot.GeneDependencyModel: no visible global function definition for
+  ‘gray’
+summarize.region.parameters: no visible global function definition for
+  ‘na.omit’
+summarize.region.parameters: no visible global function definition for
+  ‘cor’
+W.effects: no visible global function definition for ‘z.expectation’
+W.effects: no visible global function definition for ‘princomp’
+W.effects: no visible global function definition for ‘cor’
+z.effects: no visible global function definition for ‘z.expectation’
+z.effects: no visible global function definition for ‘princomp’
+getZ,GeneDependencyModel: no visible global function definition for
+  ‘z.expectation’
+Undefined global functions or variables:
+  cor fit.dependency.model gray na.omit princomp quantile rnorm sd
+  z.expectation
+Consider adding
+  importFrom("grDevices", "gray")
+  importFrom("stats", "cor", "na.omit", "princomp", "quantile", "rnorm",
+             "sd")
+to your NAMESPACE file.
+* checking Rd files ... OK
+* checking Rd metadata ... OK
+* checking Rd line widths ... OK
+* checking Rd cross-references ... WARNING
+Missing link or links in documentation object 'screen.cgh.mrna.Rd':
+  ‘pint.match’ ‘dependency score plotting’ ‘ChromosomeModels-class’
+  ‘GenomeModels-class’
+
+See section 'Cross-references' in the 'Writing R Extensions' manual.
+
+* checking for missing documentation entries ... WARNING
+Undocumented data sets:
+  ‘geneCopyNum’ ‘geneExp’
+Undocumented S4 methods:
+  generic '[[' and siglist 'ChromosomeModels'
+  generic '[[' and siglist 'GenomeModels'
+  generic '[[<-' and siglist 'ChromosomeModels'
+  generic '[[<-' and siglist 'GenomeModels'
+All user-level objects in a package (including S4 classes and methods)
+should have documentation entries.
+See chapter ‘Writing R documentation files’ in the ‘Writing R
+Extensions’ manual.
+* checking for code/documentation mismatches ... OK
+* checking Rd \usage sections ... WARNING
+Undocumented arguments in documentation object 'augment.region'
+  ‘region.genes’ ‘gene.info’
+
+Undocumented arguments in documentation object 'fixed.window'
+  ‘X’ ‘Y’ ‘middleIndex’ ‘windowSize’
+
+Undocumented arguments in documentation object 'get.neighboring.probes'
+  ‘X’ ‘Y’ ‘chr’ ‘max.dist’ ‘control.arms’ ‘remove.duplicates’
+
+Undocumented arguments in documentation object 'get.neighs'
+  ‘X’ ‘Y’ ‘xchrinds’ ‘ychrinds’ ‘max.dist’ ‘remove.duplicates’
+
+Undocumented arguments in documentation object 'iterative.window'
+  ‘X’ ‘Y’ ‘middleIndex’ ‘windowSize’
+
+Undocumented arguments in documentation object 'join.top.regions'
+  ‘model’ ‘feature.info’ ‘quantile.th’ ‘augment’
+
+Undocumented arguments in documentation object 'order.feature.info'
+  ‘feature.info’
+
+Undocumented arguments in documentation object 'pint.data'
+  ‘data’ ‘info’ ‘impute’ ‘replace.inf’ ‘remove.duplicates’
+
+Undocumented arguments in documentation object 'screen.cgh.mrna'
+  ‘params’ ‘max.dist’ ‘outputType’ ‘useSegmentedData’
+Documented arguments not in \usage in documentation object 'screen.cgh.mrna':
+  ‘useSegmentedData:’ ‘param’
+
+Undocumented arguments in documentation object 'summarize.region.parameters'
+  ‘region.genes’ ‘model’ ‘X’ ‘Y’ ‘grouping.th’ ‘rm.na’
+
+Functions with \usage entries need to have the appropriate \alias
+entries, and all their arguments documented.
+The \usage entries must correspond to syntactically valid R code.
+See chapter ‘Writing R documentation files’ in the ‘Writing R
+Extensions’ manual.
+* checking Rd contents ... OK
+* checking for unstated dependencies in examples ... OK
+* checking contents of ‘data’ directory ... OK
+* checking data for non-ASCII characters ... OK
+* checking data for ASCII and uncompressed saves ... OK
+* checking files in ‘vignettes’ ... WARNING
+Files in the 'vignettes' directory but no files in 'inst/doc':
+  ‘cca2.eps’, ‘cca2.png’, ‘depsearch-003.eps’, ‘depsearch-005.eps’,
+    ‘depsearch.bib’, ‘depsearch.Rnw’
+* checking examples ... OK
+* checking for unstated dependencies in vignettes ... OK
+* checking package vignettes in ‘inst/doc’ ... WARNING
+dir.exists(dir) is not TRUE
+Package vignette without corresponding single PDF/HTML:
+   ‘depsearch.Rnw’
+
+* checking running R code from vignettes ... OK
+  ‘depsearch.Rnw’... OK
+* checking re-building of vignette outputs ... SKIPPED
+* checking PDF version of manual ... OK
+* checking for detritus in the temp directory ... OK
 * DONE
-Status: 1 ERROR, 1 NOTE
+Status: 6 WARNINGs, 3 NOTEs

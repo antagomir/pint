@@ -1,5 +1,8 @@
-fixed.window <-
-function (X, Y, middleIndex, windowSize){
+#' @title Fixed Window
+#' @description Fixed window.
+#' @return List
+#' @export
+fixed.window <- function (X, Y, middleIndex, windowSize){
 		
   # chromosome and arm of window
   chr <- X$info$chr[middleIndex]
@@ -17,7 +20,6 @@ function (X, Y, middleIndex, windowSize){
   # Indices for the window. If indices exceed the limits, then use the
   # last window that fits (all windows must have same size, and it is
   # safer not to exclude any gene since it is in the ends of the arms)  
-  #inds <- (middleIndex - (trunc((windowSize - 1)/2))) : (middleIndex + (trunc(windowSize/2)))	
 
   if (is.null(arm)) {
     arminds <- which(X$info$chr == chr)

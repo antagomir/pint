@@ -1,3 +1,6 @@
+CHANGES IN VERSION 1.37.2 (2020-01-12)
+  o Bridged with git and resolved the most critical parts to maintain package functionality
+
 CHANGES IN VERSION 1.7.03 (2012-03-22)
 
   o fixed missing documentations
